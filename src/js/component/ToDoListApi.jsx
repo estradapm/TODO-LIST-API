@@ -1,9 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const TodoList = () => {
     const [inputValue, setInputValue] = useState('');
     const [tasks, setTasks] = useState([]);
 
+    const getTasks = async () => {
+        await fetch("https://playground.4geeks.com/todo/users/Mariona", {
+          method: "GET",
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            setTasks(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+    
+      useEffect(() => {
+        getTasks();
+      }, []);
+
+      const putList = async () => {
+        await fetch("https://playground.4geeks.com/todo/users/Mariona", {
+          method: "PUT",
+          body: JSON.stringify(tasks),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.error("error", error));
+      };
+    
+      console.log(tasks);
+    
+    
+      useEffect(() => {
+        putList();
+      }, [tasks]);
+      
+    
+    
+    
     const addTask = (event) => {
         if (event.key === 'Enter' && inputValue) {
             setTasks([...tasks, inputValue]);
