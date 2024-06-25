@@ -15,7 +15,6 @@ const TodoList = () => {
         setTasks(tasks.filter((_, i) => i !== index));
     };
     
-    
 
     return (
         <div className="container">
@@ -35,7 +34,7 @@ const TodoList = () => {
                     </li>
                 ))}
             </ul>
-            {tasks.length ? "" : <span id="warning"> Add a new task</span>}
+            {tasks.length ? "" : <span>Add a new task</span>}
         </div>
     );
 }
