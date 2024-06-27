@@ -44,10 +44,10 @@ const TodoList = () => {
   
     // Actualizar la API cuando las tareas cambian
     useEffect(() => {
-      if (tasks.length > 0) {
-        putList(tasks);
-      }
-    }, [tasks]);
+       {putList(tasks);
+
+       }
+    }, []);
   
     // Manejar el submit del formulario para agregar una nueva tarea
     const submitHandler = (e) => {
@@ -60,8 +60,9 @@ const TodoList = () => {
   
     // Eliminar una tarea
     const removeTask = (index) => {
-      const newTasks = tasks.filter((_, i) => i !== index);
-      setTasks(newTasks);
+      const newTasks = [...tasks]; 
+      newTasks.splice(index, 1); 
+      setTasks(newTasks); 
     };
   
     // Limpiar todas las tareas
@@ -85,7 +86,7 @@ const TodoList = () => {
           {tasks.map((task, index) => (
             <li key={index}>
               <span>{task.label}</span>
-              <button onClick={() => removeTask(index)}>x</button>
+              <button onClick={() => removeTask(index)}>X</button>
             </li>
           ))}
         </ul>
