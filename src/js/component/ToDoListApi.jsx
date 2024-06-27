@@ -10,20 +10,17 @@ const TodoList = () => {
       try {
         const response = await fetch("https://playground.4geeks.com/todo/users/Mariona");
         const data = await response.json();
-        if (Array.isArray(data)) {
-          setTasks(data);
-        } else {
-          setTasks([]);
-        }
+       console.log (data)
+       setTasks (data.todos)
       } catch (error) {
         console.error("Error al conectar con la API", error);
       }
     };
   
     // Actualizar la lista de tareas en la API
-    const putList = async () => {
+    const putList = async (id) => {
       try {
-        const response = await fetch("https://playground.4geeks.com/todo/users/Mariona", {
+        const response = await fetch("https://playground.4geeks.com/todo/todos/" + id, {
           method: "PUT",
           body: JSON.stringify(tasks),
           headers: {
@@ -43,11 +40,7 @@ const TodoList = () => {
     }, []);
   
     // Actualizar la API cuando las tareas cambian
-    useEffect(() => {
-       {putList(tasks);
-
-       }
-    }, []);
+ 
   
     // Manejar el submit del formulario para agregar una nueva tarea
     const submitHandler = (e) => {
