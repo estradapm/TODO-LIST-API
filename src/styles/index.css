@@ -49,11 +49,9 @@ li {
     position: relative;
 }
 
-li span {
-    flex-grow: 1;
-}
 
-button {
+
+.taskList li button {
     background: none;
     border: none;
     color: red;
@@ -69,6 +67,15 @@ li:hover button {
     display: block;
 }
 
-button:hover {
-    background-color: #ffcccc;
+li button:hover {
+    background-color: none; 
+}
+
+button {
+   
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: rgb(244, 137, 137);
 }
